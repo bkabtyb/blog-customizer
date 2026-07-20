@@ -8,19 +8,21 @@ import { defaultArticleState } from './../../constants/articleProps';
 import styles from './app.module.scss';
 
 export const App = () => {
+	const [articleState, setArticleState] =
+		useState<ArticleStateType>(defaultArticleState);
 	return (
 		<main
 			className={clsx(styles.main)}
 			style={
 				{
-					'--font-family': defaultArticleState.fontFamilyOption.value,
-					'--font-size': defaultArticleState.fontSizeOption.value,
-					'--font-color': defaultArticleState.fontColor.value,
-					'--container-width': defaultArticleState.contentWidth.value,
-					'--bg-color': defaultArticleState.backgroundColor.value,
+					'--font-family': articleState.fontFamilyOption.value,
+					'--font-size': articleState.fontSizeOption.value,
+					'--font-color': articleState.fontColor.value,
+					'--container-width': articleState.contentWidth.value,
+					'--bg-color': articleState.backgroundColor.value,
 				} as CSSProperties
 			}>
-			<ArticleParamsForm />
+			<ArticleParamsForm values={articleState} onApply={setArticleState} />
 			<Article />
 		</main>
 	);
